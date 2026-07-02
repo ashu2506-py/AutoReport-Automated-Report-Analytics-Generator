@@ -1,5 +1,6 @@
 import os
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def generate_charts(df,charts):
@@ -45,5 +46,29 @@ def generate_charts(df,charts):
         plt.tight_layout()
         plt.savefig("../reports/charts/scatter_chart.png")
         plt.close()
+    
+    # Heatmap
+    if "heatmap" in charts:
+
+        numeric_df = df.select_dtypes(include="number")
+
+        if not numeric_df.empty:
+
+            plt.figure(figsize=(8, 6))
+
+            sns.heatmap(
+                numeric_df.corr(),
+                annot=True,
+                cmap="Blues",
+                linewidths=0.5
+            )
+
+            plt.title("Correlation Heatmap")
+
+            plt.tight_layout()
+
+            plt.savefig("../reports/charts/heatmap_chart.png")
+
+            plt.close()
 
     print("Charts Generated Successfully!")

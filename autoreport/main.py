@@ -7,6 +7,7 @@ from report.pdf_report import generate_pdf
 from report.template_loader import load_template
 from injestion.data_loader import load_data
 from scheduler.scheduler import start_scheduler
+from analysis.insights import generate_insights
 app=typer.Typer()
 @app.command()
 def hello():
@@ -23,6 +24,16 @@ def generate(file: str, template: str,table:str=None):
     if config["include_statistics"]:
         stats = generate_statistics(df)
         print(stats["summary"])
+    
+    insights = generate_insights(df)
+
+    print("\n========== INSIGHTS ==========")
+    print(f"Total Revenue : ₹{insights['total_revenue']}")
+    print(f"Top Product   : {insights['top_product']}")
+    print(f"Average Price : ₹{insights['average_price']:.2f}")
+
+    print("\nRevenue By Product")
+    print(insights["revenue_by_product"])
 
     generate_charts(df, config["charts"])
 
