@@ -8,7 +8,9 @@ charts:
   - pie
   - scatter
   - heatmap
-
+  - revenue
+  - trend
+    
 include_statistics: true
 
 include_dataset: true

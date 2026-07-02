@@ -1,0 +1,9 @@
+title: HR Report
+author: Ashutosh Singh
+
+include_statistics: true
+
+charts:
+  - bar
+  - pie
+  - heatmap

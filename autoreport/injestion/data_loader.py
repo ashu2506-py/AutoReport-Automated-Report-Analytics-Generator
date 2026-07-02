@@ -4,10 +4,13 @@ from .csv_reader import read_csv
 from .excel_reader import read_excel
 from .json_reader import read_json
 from .sqlite_reader import read_sqlite
+from .api_reader import read_api
 
 
 def load_data(file, table=None):
 
+    if file.startswith("http://") or file.startswith("https://"):
+        return read_api(file)
     extension = os.path.splitext(file)[1].lower()
 
     if extension == ".csv":
@@ -26,5 +29,7 @@ def load_data(file, table=None):
 
         return read_sqlite(file, table)
 
+    
+    
     else:
         raise ValueError("Unsupported file format.")

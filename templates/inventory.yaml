@@ -1,0 +1,9 @@
+title: Inventory Report
+author: Ashutosh Singh
+
+include_statistics: true
+
+charts:
+  - bar
+  - line
+  - heatmap
