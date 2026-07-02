@@ -1,0 +1,13 @@
+title: Sales Report
+
+author: Ashutosh Singh
+
+charts:
+  - bar
+  - line
+  - pie
+  - scatter
+
+include_statistics: true
+
+include_dataset: true
