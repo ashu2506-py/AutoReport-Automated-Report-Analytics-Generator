@@ -112,9 +112,9 @@ The project was built to demonstrate practical Python development, data analysis
         +----------------+----------------+
         |                                 |
    File Sources                     REST API
-(CSV/Excel/JSON/SQLite)                |
-        |                               |
-        +---------------+---------------+
+(CSV/Excel/JSON/SQLite)                   |
+        |                                 |
+        +---------------+-----------------+
                         |
                  Data Loader
                         |
@@ -305,26 +305,34 @@ reports
 # 📷 Screenshots
 
 ## CLI
-
+    ![CLI](image-9.png)
+    ![CLI](image-10.png)
 
 
 ---
 
 ## HTML Report
 
+![HR Report](image.png)
+![Sales Report](image-1.png)
 
 
 ---
 
 ## PDF Report
 
-
+![Sales Report](image-2.png)
 
 ---
 
 ## Charts
 
-
+![Bar_Chart](image-3.png)
+![Heatmap_chart](image-4.png)
+![Line_Chart](image-5.png)
+![Pie_Chart](image-6.png)
+![Scatter_chart](image-7.png)
+![Trend_chart](image-8.png)
 
 ---
 
