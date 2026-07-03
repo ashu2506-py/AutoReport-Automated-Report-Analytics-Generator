@@ -87,7 +87,7 @@ def generate(file: str, template: str,table:str=None):
 
     generate_charts(df, config["charts"])
 
-    generate_html(df, config)
+    generate_html(df, config,insights)
 
     generate_pdf(df, config)
 

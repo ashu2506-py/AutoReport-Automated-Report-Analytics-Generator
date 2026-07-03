@@ -1,9 +1,9 @@
-title: Inventory Report
+title: Inventory Analytics Report
 author: Ashutosh Singh
-
-include_statistics: true
 
 charts:
   - bar
-  - line
+  - pie
   - heatmap
+
+include_statistics: true

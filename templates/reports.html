@@ -1,29 +1,867 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>AutoReport</title>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{ title }}</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#eef2f7;
+
+    color:#222;
+
+}
+
+/* ================= NAVBAR ================= */
+
+.hero{
+
+    background:linear-gradient(135deg,#2563eb,#4f46e5,#9333ea);
+
+    color:white;
+
+    padding:60px;
+
+    border-radius:0 0 35px 35px;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.18);
+
+}
+
+.hero h1{
+
+    font-size:42px;
+
+    font-weight:700;
+
+}
+
+.hero p{
+
+    opacity:.95;
+
+    font-size:17px;
+
+}
+
+/* ================= CONTAINER ================= */
+
+.wrapper{
+
+    width:92%;
+
+    max-width:1450px;
+
+    margin:auto;
+
+    margin-top:-45px;
+
+}
+
+/* ================= KPI CARDS ================= */
+
+.kpi-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    gap:25px;
+
+    margin-bottom:40px;
+
+}
+
+.kpi-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.kpi-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.kpi-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:6px;
+
+    height:100%;
+
+    background:#2563eb;
+
+}
+
+.kpi-card i{
+
+    font-size:32px;
+
+    color:#2563eb;
+
+    margin-bottom:15px;
+
+}
+
+.kpi-title{
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
+.kpi-value{
+
+    font-size:38px;
+
+    font-weight:700;
+
+}
+
+/* ================= SECTION ================= */
+
+.section{
+
+    background:white;
+
+    margin-bottom:35px;
+
+    border-radius:22px;
+
+    padding:35px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.section-title{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+    color:#222;
+
+}
+
+/* ================= TABLE ================= */
+
+table{
+
+    width:100%!important;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#2563eb!important;
+
+    color:white!important;
+
+}
+
+td,th{
+
+    padding:14px!important;
+
+    text-align:center;
+
+}
+
+tr:nth-child(even){
+
+    background:#f8fafc;
+
+}
+
+/* ================= CHART GRID ================= */
+
+.chart-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(450px,1fr));
+
+    gap:30px;
+
+}
+
+.chart-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    border:1px solid #ececec;
+
+}
+
+.chart-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 35px rgba(37,99,235,.25);
+
+}
+
+.chart-card h5{
+
+    margin-bottom:20px;
+
+    font-weight:600;
+
+}
+
+.chart-card img{
+
+    width:100%;
+
+    border-radius:12px;
+
+    transition:.4s;
+
+}
+
+.chart-card:hover img{
+
+    transform:scale(1.03);
+
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+
+    margin-top:50px;
+
+    margin-bottom:30px;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:15px;
+
+}
+
+.badge-custom{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    font-size:13px;
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<h1>{{ title }}</h1>
-<p>Author: {{ author}}</p>
+<!-- ================= HERO ================= -->
 
-<h2>Dataset Preview</h2>
+<div class="hero">
 
-{{ table | safe }}
+<div class="container">
 
-<h2>Charts</h2>
+<h1><i class="fa-solid fa-chart-line"></i> {{ title }}</h1>
 
-<img src="charts/bar_chart.png" width="500"><br><br>
-<img src="charts/line_chart.png" width="500"><br><br>
-<img src="charts/pie_chart.png" width="500"><br><br>
-<img src="charts/scatter_chart.png" width="500"><br><br>
-<img src="charts/heatmap_chart.png" width="500"><br><br>
-<img src="charts/trend_chart.png" width="500">
+<p>Automated Report & Analytics Dashboard</p>
 
-<h2>Revenue by Product</h2>
+<br>
 
-<img src="charts/revenue_chart.png" width="500">
+<span class="badge-custom">
 
-</body>
-</html>
+Generated : {{ generated_on }}
+
+</span>
+
+&nbsp;
+
+<span class="badge-custom">
+
+Author : {{ author }}
+
+</span>
+
+</div>
+
+</div>
+
+<div class="wrapper">
+
+<!-- ================= KPI ================= -->
+
+<div class="kpi-grid">
+
+<div class="kpi-card">
+
+<i class="fa-solid fa-table"></i>
+
+<div class="kpi-title">Rows</div>
+
+<div class="kpi-value">{{ rows }}</div>
+
+</div>
+
+<div class="kpi-card">
+
+<i class="fa-solid fa-columns"></i>
+
+<div class="kpi-title">Columns</div>
+
+<div class="kpi-value">{{ columns }}</div>
+
+</div>
+
+<div class="kpi-card">
+
+<i class="fa-solid fa-circle-exclamation"></i>
+
+<div class="kpi-title">Missing Values</div>
+
+<div class="kpi-value">{{ missing }}</div>
+
+</div>
+
+<div class="kpi-card">
+
+<i class="fa-solid fa-copy"></i>
+
+<div class="kpi-title">Duplicates</div>
+
+<div class="kpi-value">{{ duplicates }}</div>
+
+</div>
+
+</div>
+
+<!-- ================= EXECUTIVE DASHBOARD ================= -->
+
+<div class="row mb-4">
+
+    <!-- Executive Summary -->
+
+    <div class="col-lg-6">
+
+        <div class="section">
+
+            <h2 class="section-title">
+                <i class="fa-solid fa-gauge-high text-primary"></i>
+                Executive Summary
+            </h2>
+
+            <div class="row">
+
+                <div class="col-6 mb-3">
+
+                    <div class="card border-0 shadow-sm">
+
+                        <div class="card-body">
+
+                            <h6 class="text-muted">Dataset Health</h6>
+
+                            {% if missing == 0 and duplicates == 0 %}
+                                <h3 class="text-success">Excellent</h3>
+                            {% elif missing < 5 %}
+                                <h3 class="text-warning">Good</h3>
+                            {% else %}
+                                <h3 class="text-danger">Needs Cleaning</h3>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-6 mb-3">
+
+                    <div class="card border-0 shadow-sm">
+
+                        <div class="card-body">
+
+                            <h6 class="text-muted">Numeric Columns</h6>
+
+                            <h3>{{ numeric_columns }}</h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-6">
+
+                    <div class="card border-0 shadow-sm">
+
+                        <div class="card-body">
+
+                            <h6 class="text-muted">Rows</h6>
+
+                            <h3>{{ rows }}</h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-6">
+
+                    <div class="card border-0 shadow-sm">
+
+                        <div class="card-body">
+
+                            <h6 class="text-muted">Columns</h6>
+
+                            <h3>{{ columns }}</h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Business Insights -->
+
+    <div class="col-lg-6">
+
+        <div class="section">
+
+            <h2 class="section-title">
+
+                <i class="fa-solid fa-lightbulb text-warning"></i>
+
+                Business Insights
+
+            </h2>
+
+            {% if insights %}
+
+                {% if insights.total_revenue is defined %}
+
+                <div class="alert alert-success">
+
+                    <strong>Total Revenue</strong>
+
+                    <br>
+
+                    ₹ {{ "{:,.0f}".format(insights.total_revenue) }}
+
+                </div>
+
+                {% endif %}
+
+                {% if insights.top_product is defined %}
+
+                <div class="alert alert-primary">
+
+                    <strong>Top Selling Product</strong>
+
+                    <br>
+
+                    {{ insights.top_product }}
+
+                </div>
+
+                {% endif %}
+
+                {% if insights.average_price is defined %}
+
+                <div class="alert alert-info">
+
+                    <strong>Average Price</strong>
+
+                    <br>
+
+                    ₹ {{ "%.2f"|format(insights.average_price) }}
+
+                </div>
+
+                {% endif %}
+
+            {% else %}
+
+                <div class="alert alert-secondary">
+
+                    No business insights available for this dataset.
+
+                </div>
+
+            {% endif %}
+
+            <div class="mt-4">
+
+                <h6>Data Quality</h6>
+
+                {% set score = 100 - missing - duplicates %}
+
+                <div class="progress" style="height:18px;">
+
+                    <div class="progress-bar bg-success"
+
+                        role="progressbar"
+
+                        style="width: {{ score if score > 0 else 0 }}%;">
+
+                        {{ score if score > 0 else 0 }}%
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= CHART DASHBOARD ================= -->
+
+<div class="section">
+
+    <h2 class="section-title">
+
+        <i class="fa-solid fa-chart-column text-danger"></i>
+
+        Analytics Dashboard
+
+    </h2>
+
+    <div class="chart-grid">
+
+        <!-- BAR -->
+
+        <div class="chart-card">
+
+            <h5>📊 Product vs Quantity</h5>
+
+            <p class="text-muted">
+                Compare the quantity sold across products.
+            </p>
+
+            <img src="charts/bar_chart.png">
+
+        </div>
+
+        <!-- LINE -->
+
+        <div class="chart-card">
+
+            <h5>📈 Product vs Price</h5>
+
+            <p class="text-muted">
+                Visual representation of product pricing.
+            </p>
+
+            <img src="charts/line_chart.png">
+
+        </div>
+
+        <!-- PIE -->
+
+        <div class="chart-card">
+
+            <h5>🥧 Quantity Distribution</h5>
+
+            <p class="text-muted">
+                Product contribution to total quantity.
+            </p>
+
+            <img src="charts/pie_chart.png">
+
+        </div>
+
+        <!-- SCATTER -->
+
+        <div class="chart-card">
+
+            <h5>🔵 Quantity vs Price</h5>
+
+            <p class="text-muted">
+                Relationship between quantity and price.
+            </p>
+
+            <img src="charts/scatter_chart.png">
+
+        </div>
+
+        <!-- HEATMAP -->
+
+        <div class="chart-card">
+
+            <h5>🔥 Correlation Heatmap</h5>
+
+            <p class="text-muted">
+                Correlation between numerical columns.
+            </p>
+
+            <img src="charts/heatmap_chart.png">
+
+        </div>
+
+        <!-- REVENUE -->
+
+        <div class="chart-card">
+
+            <h5>💰 Revenue by Product</h5>
+
+            <p class="text-muted">
+                Revenue generated by each product.
+            </p>
+
+            <img src="charts/revenue_chart.png">
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="section">
+
+    <h2 class="section-title">
+
+        <i class="fa-solid fa-arrow-trend-up text-success"></i>
+
+        Revenue Trend Analysis
+
+    </h2>
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-body">
+
+            <img src="charts/trend_chart.png">
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= EXECUTIVE RECOMMENDATIONS ================= -->
+
+<div class="row">
+
+<div class="col-lg-7">
+
+<div class="section">
+
+<h2 class="section-title">
+
+<i class="fa-solid fa-brain text-primary"></i>
+
+Executive Recommendations
+
+</h2>
+
+<div class="alert alert-success">
+
+<h5>✔ Dataset Status</h5>
+
+Dataset processed successfully.
+
+</div>
+
+<div class="alert alert-info">
+
+<h5>📈 Data Quality</h5>
+
+{% if missing==0 %}
+
+No missing values detected.
+
+{% else %}
+
+{{ missing }} missing values detected.
+
+{% endif %}
+
+</div>
+
+<div class="alert alert-warning">
+
+<h5>📊 Recommendation</h5>
+
+{% if insights and insights.top_product is defined %}
+
+Increase inventory for
+
+<b>{{ insights.top_product }}</b>
+
+to maximize revenue.
+
+{% else %}
+
+Business recommendation unavailable for this dataset.
+
+{% endif %}
+
+</div>
+
+<div class="alert alert-primary">
+
+<h5>💡 Observation</h5>
+
+Charts indicate the overall distribution and trends of the dataset.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-5">
+
+<div class="section">
+
+<h2 class="section-title">
+
+<i class="fa-solid fa-heart-pulse text-danger"></i>
+
+Dataset Health
+
+</h2>
+
+<h5 class="mb-3">
+
+Overall Score
+
+</h5>
+
+{% set health = 100 - missing - duplicates %}
+
+<div class="progress mb-4" style="height:30px;">
+
+<div
+class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+
+style="width:{{ health if health>0 else 0 }}%;">
+
+{{ health if health>0 else 0 }}%
+
+</div>
+
+</div>
+
+<table class="table">
+
+<tr>
+
+<td>Total Rows</td>
+
+<td>{{ rows }}</td>
+
+</tr>
+
+<tr>
+
+<td>Total Columns</td>
+
+<td>{{ columns }}</td>
+
+</tr>
+
+<tr>
+
+<td>Numeric Columns</td>
+
+<td>{{ numeric_columns }}</td>
+
+</tr>
+
+<tr>
+
+<td>Missing Values</td>
+
+<td>{{ missing }}</td>
+
+</tr>
+
+<tr>
+
+<td>Duplicate Rows</td>
+
+<td>{{ duplicates }}</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>

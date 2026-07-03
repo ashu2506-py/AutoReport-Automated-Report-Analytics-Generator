@@ -1,9 +1,10 @@
-title: HR Report
+title: HR Analytics Report
 author: Ashutosh Singh
-
-include_statistics: true
 
 charts:
   - bar
-  - pie
+  - line
+  - scatter
   - heatmap
+
+include_statistics: true
