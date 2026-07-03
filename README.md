@@ -1,67 +1,177 @@
 # 📊 AutoReport – Automated Report & Analytics Generator
 
-A Python-based Command Line Interface (CLI) application that automates data analysis and generates professional HTML and PDF reports from multiple data sources including CSV, Excel, JSON, and SQLite.
+![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-green?logo=pandas)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange)
+![Pytest](https://img.shields.io/badge/Tested%20With-Pytest-success)
+![Status](https://img.shields.io/badge/Project-Completed-brightgreen)
 
 ---
 
-## 🚀 Features
+## 📖 Overview
 
-- 📂 Supports multiple data sources
-  - CSV
-  - Excel (.xlsx)
-  - JSON
-  - SQLite
+**AutoReport** is a Python-based Command Line Interface (CLI) application that automates data analysis and report generation.
 
-- 📈 Data Analytics
-  - Statistical Summary
-  - Missing Value Detection
-  - Duplicate Detection
-  - Dataset Information
+Instead of manually analyzing datasets, AutoReport loads data from multiple sources, performs statistical analysis, detects anomalies, generates charts, and exports professional HTML and PDF reports using a single command.
 
-- 📊 Automatic Chart Generation
-  - Bar Chart
-  - Line Chart
-  - Pie Chart
-  - Scatter Plot
+The project was built to demonstrate practical Python development, data analysis, report automation, and software architecture.
 
-- 📄 Report Generation
-  - HTML Report
-  - PDF Report
+---
 
-- ⚙️ YAML Configuration
-  - Report Title
-  - Author
-  - Charts to Generate
-  - Enable/Disable Statistics
+# ✨ Features
 
-- ⏰ Scheduled Report Generation using APScheduler
+## 📂 Multi-Source Data Ingestion
 
-- 🧪 Unit Testing with Pytest
+- ✅ CSV
+- ✅ Excel (.xlsx)
+- ✅ JSON
+- ✅ SQLite Database
+- ✅ REST API
+
+---
+
+## 📊 Statistical Analysis
+
+- Dataset Summary
+- Missing Value Detection
+- Duplicate Detection
+- Mean
+- Median
+- Standard Deviation
+- Percentiles
+
+---
+
+## 📈 Analytics
+
+- Revenue by Product
+- Top Selling Product
+- Average Price
+- Trend Analysis
+- Moving Average
+- Growth Rate
+- Anomaly Detection
+- Business Insights
+
+---
+
+## 📉 Charts
+
+- 📊 Bar Chart
+- 📈 Line Chart
+- 🥧 Pie Chart
+- 🔵 Scatter Plot
+- 🔥 Correlation Heatmap
+- 💰 Revenue Chart
+- 📉 Trend Chart
+
+---
+
+## 📄 Report Generation
+
+- HTML Report
+- PDF Report
+
+---
+
+## ⚙️ Configuration
+
+- YAML Templates
+- Multiple Report Templates
+- Configurable Charts
+- Configurable Statistics
+
+---
+
+## ⏰ Scheduler
+
+- Automated Scheduled Report Generation using APScheduler
+
+---
+
+## ✅ Validation
+
+- Dataset Validation Command
+- Template Listing Command
+
+---
+
+## 🧪 Testing
+
+- Unit Testing using Pytest
+
+---
+
+# 🏗 Project Architecture
+
+```
+                +----------------+
+                | Input Dataset  |
+                +--------+-------+
+                         |
+        +----------------+----------------+
+        |                                 |
+   File Sources                     REST API
+(CSV/Excel/JSON/SQLite)                |
+        |                               |
+        +---------------+---------------+
+                        |
+                 Data Loader
+                        |
+                 Statistical Analysis
+                        |
+         +--------------+--------------+
+         |                             |
+     Analytics                    Charts
+         |                             |
+         +--------------+--------------+
+                        |
+                HTML Report
+                        |
+                 PDF Report
+```
 
 ---
 
 # 📁 Project Structure
 
-```text
+```
 AutoReport2
 │
 ├── autoreport
 │   ├── analysis
+│   │   ├── statistics.py
+│   │   ├── insights.py
+│   │   ├── trends.py
+│   │   └── anomalies.py
+│   │
 │   ├── charts
+│   │   └── chart_factory.py
+│   │
 │   ├── ingestion
+│   │   ├── csv_reader.py
+│   │   ├── excel_reader.py
+│   │   ├── json_reader.py
+│   │   ├── sqlite_reader.py
+│   │   ├── api_reader.py
+│   │   └── data_loader.py
+│   │
 │   ├── report
+│   │   ├── html_report.py
+│   │   ├── pdf_report.py
+│   │   └── template_loader.py
+│   │
 │   ├── scheduler
+│   │
 │   ├── utils
+│   │
 │   └── main.py
 │
 ├── data
-│
 ├── reports
-│
 ├── templates
-│
 ├── tests
-│
+├── README.md
 ├── requirements.txt
 ├── pyproject.toml
 └── .gitignore
@@ -69,16 +179,18 @@ AutoReport2
 
 ---
 
-# 🛠️ Technologies Used
+# 🛠 Technologies Used
 
-- Python 3.11+
+- Python
 - Pandas
 - Matplotlib
+- Seaborn
 - Jinja2
 - ReportLab
 - PyYAML
 - APScheduler
 - SQLite3
+- Requests
 - Typer
 - Pytest
 
@@ -92,19 +204,19 @@ Clone the repository
 git clone https://github.com/ashu2506-py/AutoReport-Automated-Report-Analytics-Generator.git
 ```
 
-Move inside the project
+Move into the project
 
 ```bash
-cd AutoReport2
+cd autoreport2
 ```
 
-Create Virtual Environment
+Create virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-Activate it
+Activate virtual environment
 
 ### Windows
 
@@ -120,47 +232,137 @@ pip install -r requirements.txt
 
 ---
 
-# ▶️ Usage
+# 🚀 Usage
 
-Generate report from CSV
-
-```bash
-python autoreport/main.py generate data/sales.csv templates/sales.yaml
-```
-
-Generate report from SQLite
+## Generate Report
 
 ```bash
-python autoreport/main.py generate data/sales.db templates/sales.yaml --table sales
-```
-
-Run Scheduled Reports
-
-```bash
-python autoreport/main.py schedule data/sales.csv templates/sales.yaml --minutes 2
+python main.py generate ../data/sales.csv ../templates/sales.yaml
 ```
 
 ---
 
-# 📂 Output
+## Generate Report from SQLite
 
-The application automatically generates:
+```bash
+python main.py generate ../data/sales.db ../templates/sales.yaml --table sales
+```
 
-```text
-reports/
+---
+
+## Generate Report from REST API
+
+```bash
+python main.py generate https://jsonplaceholder.typicode.com/users ../templates/sales.yaml
+```
+
+---
+
+## Validate Dataset
+
+```bash
+python main.py validate ../data/sales.csv
+```
+
+---
+
+## List Available Templates
+
+```bash
+python main.py list-templates
+```
+
+---
+
+## Schedule Reports
+
+```bash
+python main.py schedule ../data/sales.csv ../templates/sales.yaml --minutes 2
+```
+
+---
+
+# 📄 Generated Output
+
+```
+reports
 │
 ├── report.html
 ├── report.pdf
-└── charts/
+│
+└── charts
     ├── bar_chart.png
     ├── line_chart.png
     ├── pie_chart.png
-    └── scatter_chart.png
+    ├── scatter_chart.png
+    ├── heatmap_chart.png
+    ├── revenue_chart.png
+    └── trend_chart.png
 ```
 
 ---
 
-# 🧪 Run Tests
+# 📷 Screenshots
+
+## CLI
+
+
+
+---
+
+## HTML Report
+
+
+
+---
+
+## PDF Report
+
+
+
+---
+
+## Charts
+
+
+
+---
+
+# 📌 Supported Templates
+
+- sales.yaml
+- hr.yaml
+- inventory.yaml
+
+---
+
+# 📌 Supported Data Sources
+
+| Source | Supported |
+|---------|-----------|
+| CSV | ✅ |
+| Excel | ✅ |
+| JSON | ✅ |
+| SQLite | ✅ |
+| REST API | ✅ |
+
+---
+
+# 📌 Supported Charts
+
+| Chart | Supported |
+|--------|-----------|
+| Bar | ✅ |
+| Line | ✅ |
+| Pie | ✅ |
+| Scatter | ✅ |
+| Heatmap | ✅ |
+| Revenue | ✅ |
+| Trend | ✅ |
+
+---
+
+# 🧪 Running Tests
 
 ```bash
 pytest
@@ -168,23 +370,40 @@ pytest
 
 ---
 
-# 🎯 Future Improvements
+# 🚀 Future Improvements
 
-- REST API Data Source
 - Interactive Dashboard
 - Email Report Delivery
-- Dark Theme Reports
-- AI-powered Insights
 - Docker Support
+- Machine Learning Insights
+- Dashboard Theme Customization
+- Export to Excel
+- Cloud Storage Support
+- Authentication for APIs
 
 ---
+
+# 🤝 Contributing
+
+Contributions, suggestions, and improvements are always welcome.
+
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Push to your branch
+5. Create a Pull Request
+
+---
+
+
 
 # 👨‍💻 Author
 
 **Ashutosh Singh**
 
-GitHub: https://github.com/ashu2506-py
+- GitHub: https://github.com/ashu2506-py
+- LinkedIn: https://www.linkedin.com/in/ashutosh25o6
 
 ---
 
-## ⭐ If you found this project useful, consider giving it a star!
+## ⭐ If you found this project helpful, consider giving it a Star!
