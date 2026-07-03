@@ -330,6 +330,12 @@ reports
 
 ---
 
+## 🎥 Demo Video
+
+Watch the complete demo here:
+https://youtu.be/dzkRDHNPu1E
+
+
 # 📌 Supported Templates
 
 - sales.yaml
