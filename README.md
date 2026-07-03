@@ -304,12 +304,6 @@ reports
 
 # 📷 Screenshots
 
-## CLI
-    ![CLI](image-9.png)
-    ![CLI2](image-10.png)
-
-
----
 
 ## HTML Report
 
